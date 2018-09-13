@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "student_id")
-public class Student {
+public class Student extends User {
 
 	@Id
 	@GeneratedValue
@@ -17,14 +17,11 @@ public class Student {
 	@Column(unique = true, nullable = false)
 	private String index;
 
+	
+	
+	
 	public Student() {}
 	
-	public Student(long id, String index) {
-		super();
-		this.id = id;
-		this.index = index;
-	}
-
 	public long getId() {
 		return id;
 	}
