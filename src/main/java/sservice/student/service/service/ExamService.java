@@ -1,4 +1,4 @@
-package sservice.student.service;
+package sservice.student.service.service;
 
 import java.util.List;
 
