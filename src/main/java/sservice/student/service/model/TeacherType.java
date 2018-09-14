@@ -30,6 +30,8 @@ public class TeacherType {
 		this.name = name;
 		this.teacherList = teacherList;
 	}
+	
+	public TeacherType(){}
 
 	public long getId() {
 		return id;

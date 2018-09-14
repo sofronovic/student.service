@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -26,15 +27,21 @@ public class Subject {
 
 	@Column
 	private int ects;
-
+	
+	@ManyToOne
+	private StudyProgram studyProgram;
+	
+	
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseLecture> courseLectureList = new ArrayList<CourseLecture>();
 	
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseAttending> courseAttendingList = new ArrayList<CourseAttending>();
 
+	public Subject(){}
+	
 	public Subject(long id, String label, String name, int ects, List<CourseLecture> courseLectureList,
-			List<CourseAttending> courseAttendingList) {
+			List<CourseAttending> courseAttendingList, StudyProgram studyProgram) {
 		super();
 		this.id = id;
 		this.label = label;
@@ -42,6 +49,7 @@ public class Subject {
 		this.ects = ects;
 		this.courseLectureList = courseLectureList;
 		this.courseAttendingList = courseAttendingList;
+		this.studyProgram = studyProgram;
 	}
 
 	public long getId() {
@@ -90,6 +98,14 @@ public class Subject {
 
 	public void setCourseAttendingList(List<CourseAttending> courseAttendingList) {
 		this.courseAttendingList = courseAttendingList;
+	}
+	
+	public StudyProgram getStudyProgram() {
+		return studyProgram;
+	}
+
+	public void setStudyProgram(StudyProgram studyProgram) {
+		this.studyProgram = studyProgram;
 	}
 	
 	

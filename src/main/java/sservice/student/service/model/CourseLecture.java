@@ -29,6 +29,8 @@ public class CourseLecture {
 		this.teacher = teacher;
 		this.subject = subject;
 	}
+	
+	public CourseLecture(){}
 
 	public long getId() {
 		return id;

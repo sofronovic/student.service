@@ -37,6 +37,8 @@ public class Payment {
 		this.amount = amount;
 		this.student = student;
 	}
+	
+	public Payment(){}
 
 	public long getId() {
 		return id;
