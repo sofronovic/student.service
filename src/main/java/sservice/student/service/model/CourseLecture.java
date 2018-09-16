@@ -1,6 +1,7 @@
 package sservice.student.service.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,10 +14,11 @@ public class CourseLecture {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "courseLecture_id")
 	private long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Teacher teacher;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)

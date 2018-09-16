@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -17,6 +18,7 @@ public class Subject {
 
 	@GeneratedValue
 	@Id
+	@Column(name = "subject_id")
 	private long id;
 	
 	@Column
@@ -29,8 +31,8 @@ public class Subject {
 	private int ects;
 	
 	@ManyToOne
+	@JoinColumn(name = "studyProgram_id", referencedColumnName = "studyProgram_id")
 	private StudyProgram studyProgram;
-	
 	
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseLecture> courseLectureList = new ArrayList<CourseLecture>();

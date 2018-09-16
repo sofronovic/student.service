@@ -16,6 +16,7 @@ public class TeacherType {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "teacherType_id")
 	private long id;
 	
 	@Column

@@ -16,6 +16,7 @@ public class StudyProgram {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "studyProgram_id")
 	private long id;
 	
 	@Column

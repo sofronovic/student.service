@@ -1,6 +1,7 @@
 package sservice.student.service.model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "user")
 public abstract class User {
 
 	@Id
@@ -32,9 +34,8 @@ public abstract class User {
 
 	public User() {}
 	
-	public User(long id, String username, String firstname, String lastname, String birthday, String email) {
+	public User(String username, String firstname, String lastname, String birthday, String email) {
 		super();
-		this.id = id;
 		this.username = username;
 		this.firstname = firstname;
 		this.lastname = lastname;

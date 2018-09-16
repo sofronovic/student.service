@@ -5,10 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,12 +15,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "student_id")
+@DiscriminatorValue("student")
 public class Student extends User {
 
-	@Id
-	@GeneratedValue
-	private long id;
-	
 	@Column(unique = true, nullable = false)
 	private String index;
 	
@@ -43,25 +39,16 @@ public class Student extends User {
 	
 	public Student() {}
 	
-	public Student(long id, String username, String firstname, String lastname, String birthday, String email,
+	public Student(String username, String firstname, String lastname, String birthday, String email,
 			String index, StudyProgram studyProgram, List<Document> documentList, List<Exam> examList,
 			List<Payment> paymentList, List<CourseAttending> courseList) {
-		super(id, username, firstname, lastname, birthday, email);
-		this.id = id;
+		super(username, firstname, lastname, birthday, email);
 		this.index = index;
 		this.studyProgram = studyProgram;
 		this.documentList = documentList;
 		this.examList = examList;
 		this.courseList = courseList;
 		this.paymentList = paymentList;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public String getIndex() {

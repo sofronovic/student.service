@@ -24,7 +24,7 @@ public class Exam {
 	private Student student;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "course_attending", referencedColumnName = "course_attending")
+	@JoinColumn(name = "courseAttending_id", referencedColumnName = "courseAttending_id")
 	private CourseAttending courseAttending;
 	
 	public Exam() {}
