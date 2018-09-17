@@ -37,7 +37,9 @@ public class Student extends User {
 	@OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseAttending> courseList = new ArrayList<CourseAttending>();
 	
-	public Student() {}
+	public Student() {
+		super();
+	}
 	
 	public Student(String username, String firstname, String lastname, String birthday, String email,
 			String index, StudyProgram studyProgram, List<Document> documentList, List<Exam> examList,
@@ -58,7 +60,4 @@ public class Student extends User {
 	public void setIndex(String index) {
 		this.index = index;
 	}
-	
-	
-	
 }
