@@ -12,13 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "student_id")
 @DiscriminatorValue("student")
 public class Student extends User {
 
-	@Column(unique = true, nullable = false)
+	@Column
 	private String index;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
@@ -41,16 +42,8 @@ public class Student extends User {
 		super();
 	}
 	
-	public Student(String username, String firstname, String lastname, String birthday, String email,
-			String index, StudyProgram studyProgram, List<Document> documentList, List<Exam> examList,
-			List<Payment> paymentList, List<CourseAttending> courseList) {
+	public Student(String username, String firstname, String lastname, String birthday, String email) {
 		super(username, firstname, lastname, birthday, email);
-		this.index = index;
-		this.studyProgram = studyProgram;
-		this.documentList = documentList;
-		this.examList = examList;
-		this.courseList = courseList;
-		this.paymentList = paymentList;
 	}
 
 	public String getIndex() {
@@ -59,5 +52,45 @@ public class Student extends User {
 
 	public void setIndex(String index) {
 		this.index = index;
+	}
+
+	public StudyProgram getStudyProgram() {
+		return studyProgram;
+	}
+
+	public void setStudyProgram(StudyProgram studyProgram) {
+		this.studyProgram = studyProgram;
+	}
+
+	public List<Document> getDocumentList() {
+		return documentList;
+	}
+
+	public void setDocumentList(List<Document> documentList) {
+		this.documentList = documentList;
+	}
+
+	public List<Exam> getExamList() {
+		return examList;
+	}
+
+	public void setExamList(List<Exam> examList) {
+		this.examList = examList;
+	}
+
+	public List<Payment> getPaymentList() {
+		return paymentList;
+	}
+
+	public void setPaymentList(List<Payment> paymentList) {
+		this.paymentList = paymentList;
+	}
+
+	public List<CourseAttending> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<CourseAttending> courseList) {
+		this.courseList = courseList;
 	}
 }
