@@ -12,15 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "student_id")
+@PrimaryKeyJoinColumn(name = "id")
 @DiscriminatorValue("student")
 public class Student extends User {
 
 	@Column
-	private String index;
+	private String indeks;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "studyProgram_id", referencedColumnName = "studyProgram_id")
@@ -42,16 +41,24 @@ public class Student extends User {
 		super();
 	}
 	
-	public Student(String username, String firstname, String lastname, String birthday, String email) {
+	public Student(String username, String firstname, String lastname, String birthday,
+			String email, String indeks, StudyProgram studyProgram, List<Document> documentList, List<Exam> examList, 
+			List<Payment> paymentList, List<CourseAttending> courseList) {
 		super(username, firstname, lastname, birthday, email);
+		this.indeks = indeks;
+		this.studyProgram = studyProgram;
+		this.documentList = documentList;
+		this.examList = examList;
+		this.paymentList = paymentList;
+		this.courseList = courseList;
 	}
 
 	public String getIndex() {
-		return index;
+		return indeks;
 	}
 
 	public void setIndex(String index) {
-		this.index = index;
+		this.indeks = index;
 	}
 
 	public StudyProgram getStudyProgram() {

@@ -14,7 +14,7 @@ public class Payment {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private long paymentId;
 
 	@Column
 	private String description;
@@ -26,26 +26,28 @@ public class Payment {
 	private String amount;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Student student;
 
 	public Payment(long id, String description, String date, String amount, Student student) {
 		super();
-		this.id = id;
+		this.paymentId = id;
 		this.description = description;
 		this.date = date;
 		this.amount = amount;
 		this.student = student;
 	}
 	
-	public Payment(){}
+	public Payment(){
+		super();
+	}
 
 	public long getId() {
-		return id;
+		return paymentId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.paymentId = id;
 	}
 
 	public String getDescription() {

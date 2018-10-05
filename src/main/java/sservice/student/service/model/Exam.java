@@ -14,24 +14,26 @@ public class Exam {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private long examId;
 	
 	@Column
 	private String type;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Student student;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "courseAttending_id", referencedColumnName = "courseAttending_id")
 	private CourseAttending courseAttending;
 	
-	public Exam() {}
+	public Exam() {
+		super();
+	}
 	
 	public Exam(long id, String type, Student student, CourseAttending courseAttending, int score, float points) {
 		super();
-		this.id = id;
+		this.examId = id;
 		this.type = type;
 		this.student = student;
 		this.courseAttending = courseAttending;
@@ -46,11 +48,11 @@ public class Exam {
 	private float points;
 
 	public long getId() {
-		return id;
+		return examId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.examId = id;
 	}
 
 	public String getType() {

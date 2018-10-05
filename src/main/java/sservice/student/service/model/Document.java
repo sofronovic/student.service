@@ -14,30 +14,32 @@ public class Document {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private long documentId;
 	
 	@Column
 	private String name;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Student student;
 
-	public Document() {}
+	public Document() {
+		super();
+	}
 	
 	public Document(long id, String name, Student student) {
 		super();
-		this.id = id;
+		this.documentId = id;
 		this.name = name;
 		this.student = student;
 	}
 
 	public long getId() {
-		return id;
+		return documentId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.documentId = id;
 	}
 
 	public String getName() {

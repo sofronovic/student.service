@@ -15,10 +15,10 @@ public class CourseAttending {
 	@Id
 	@GeneratedValue
 	@Column(name = "courseAttending_id")
-	private long id;
+	private long courseAttendingId;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private Student student;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
@@ -29,20 +29,25 @@ public class CourseAttending {
 	@JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
 	private Subject subject;
 	
+	public CourseAttending() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public CourseAttending(long id, Student student, StudyProgram studyProgram, Subject subject) {
 		super();
-		this.id = id;
+		this.courseAttendingId = id;
 		this.student = student;
 		this.studyProgram = studyProgram;
 		this.subject = subject;
 	}
 
 	public long getId() {
-		return id;
+		return courseAttendingId;
 	}
 
 	public void setId(long id) {
-		this.id = id;
+		this.courseAttendingId = id;
 	}
 
 	public Student getStudent() {
