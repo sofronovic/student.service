@@ -30,7 +30,9 @@ public class SubjectController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Subject>> getAllSubjects() {
 		List<Subject> subjects = subjectService.findAll();
-		
+		for (Subject i : subjects) {
+			System.out.println(i.toString());
+		}
 		return new ResponseEntity<>(subjects, HttpStatus.OK);
 		
 	}

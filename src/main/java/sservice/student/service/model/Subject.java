@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Subject {
 
@@ -33,10 +35,12 @@ public class Subject {
 	@ManyToOne
 	@JoinColumn(name = "studyProgram_id", referencedColumnName = "studyProgram_id")
 	private StudyProgram studyProgram;
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseLecture> courseLectureList = new ArrayList<CourseLecture>();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "subject", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseAttending> courseAttendingList = new ArrayList<CourseAttending>();
 
@@ -108,6 +112,13 @@ public class Subject {
 
 	public void setStudyProgram(StudyProgram studyProgram) {
 		this.studyProgram = studyProgram;
+	}
+
+	@Override
+	public String toString() {
+		return "Subject [id=" + id + ", label=" + label + ", name=" + name + ", ects=" + ects + ", studyProgram="
+				+ studyProgram + ", courseLectureList=" + courseLectureList + ", courseAttendingList="
+				+ courseAttendingList + "]";
 	}
 	
 	
