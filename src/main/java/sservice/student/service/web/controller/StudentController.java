@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import sservice.student.service.service.StudentService;
+import sservice.student.service.service.StudyProgramService;
+import sservice.student.service.dto.StudentDTO;
 import sservice.student.service.model.Student;
+import sservice.student.service.model.StudyProgram;
 
 @RestController
 @RequestMapping(value="api/students")
@@ -20,6 +23,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private StudyProgramService studyProgramService;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Student>> getAllStudents(){
@@ -39,12 +45,20 @@ public class StudentController {
 	
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<Student> saveStudent(@RequestBody Student student){
-
+	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO student){
+		StudyProgram studyProgram = studyProgramService.findOne(student.getStudyProgram().getId());
+		Student s = new Student();
+		s.setUsername(student.getUserName());
+		s.setFirstname(student.getName());
+		s.setLastname(student.getLastName());
+		s.setBirthday(student.getBirthday());
+		s.setEmail(student.getEmail());
+		s.setIndex(student.getIndex());
+		s.setStudyProgram(studyProgram);
+	
+		s = studentService.save(s);
 		
-		student = studentService.save(student);
-		
-		return new ResponseEntity<>(student, HttpStatus.CREATED);
+		return new ResponseEntity<>(new StudentDTO(s), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")

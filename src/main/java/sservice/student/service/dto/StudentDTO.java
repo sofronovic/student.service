@@ -10,15 +10,17 @@ public class StudentDTO {
 	private String password;
 	private String name;
 	private String lastName;
+	private String birthday;
 	private String email;
+	private StudyProgramDTO studyProgram;
 	
 	public StudentDTO() {}
 	
-	public StudentDTO(long id, String index) {
+	public StudentDTO(long id, String index, StudyProgramDTO studyProgram) {
 		super();
 		this.id = id;
 		this.index = index;
-		
+		this.studyProgram = studyProgram;
 	}
 
 	
@@ -26,10 +28,11 @@ public class StudentDTO {
 		id = student.getId();
 		index = student.getIndex();
 		userName = student.getUsername();
-		//Da li treba password?
 		name = student.getFirstname();
 		lastName = student.getLastname();
+		birthday = student.getBirthday();
 		email = student.getEmail();
+		studyProgram = new StudyProgramDTO(student.getStudyProgram());
 	}
 	
 	public String getUserName() {
@@ -87,4 +90,22 @@ public class StudentDTO {
 	public void setIndex(String index) {
 		this.index = index;
 	}
+
+	public StudyProgramDTO getStudyProgram() {
+		return studyProgram;
+	}
+
+	public void setStudyProgram(StudyProgramDTO studyProgram) {
+		this.studyProgram = studyProgram;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	
+	
 }
