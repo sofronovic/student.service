@@ -9,7 +9,8 @@ public class ExamDTO {
 	private int score;
 	private float points;
 	private StudentDTO student;
-	private CourseAttendingDTO courseAttending;
+	private SubjectDTO subject;
+	private TeacherDTO teacher;
 	
 	public ExamDTO(){}
 	
@@ -19,18 +20,19 @@ public class ExamDTO {
 		score = exam.getScore();
 		points = exam.getPoints();
 		student = new StudentDTO(exam.getStudent());
-		courseAttending = new CourseAttendingDTO(exam.getCourseAttending());
+		subject = new SubjectDTO(exam.getSubject());
+		teacher = new TeacherDTO(exam.getTeacher());
 	}
 
-	public ExamDTO(long id, String type, int score, float points, StudentDTO student,
-			CourseAttendingDTO courseAttending) {
+	public ExamDTO(long id, String type, int score, float points, StudentDTO student, SubjectDTO subject, TeacherDTO teacher) {
 		super();
 		this.id = id;
 		this.type = type;
 		this.score = score;
 		this.points = points;
 		this.student = student;
-		this.courseAttending = courseAttending;
+		this.subject = subject;
+		this.teacher = teacher;
 	}
 
 	public long getId() {
@@ -73,14 +75,19 @@ public class ExamDTO {
 		this.student = student;
 	}
 
-	public CourseAttendingDTO getCourseAttending() {
-		return courseAttending;
+	public SubjectDTO getSubject() {
+		return subject;
 	}
 
-	public void setCourseAttending(CourseAttendingDTO courseAttending) {
-		this.courseAttending = courseAttending;
+	public void setSubject(SubjectDTO subject) {
+		this.subject = subject;
 	}
-	
-	
-	
+
+	public TeacherDTO getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(TeacherDTO teacher) {
+		this.teacher = teacher;
+	}
 }

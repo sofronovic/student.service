@@ -16,6 +16,8 @@ import sservice.student.service.model.*;
 import sservice.student.service.service.CourseAttendingService;
 import sservice.student.service.service.ExamService;
 import sservice.student.service.service.StudentService;
+import sservice.student.service.service.SubjectService;
+import sservice.student.service.service.TeacherService;
 
 @RestController
 @RequestMapping(value="api/exams")
@@ -29,7 +31,10 @@ public class ExamController {
 	private StudentService studentService;
 	
 	@Autowired
-	private CourseAttendingService courseAttendingService;
+	private SubjectService subjectService;
+	
+	@Autowired
+	private TeacherService teacherService;
 	
 	@RequestMapping(value="/all", method = RequestMethod.GET)
 	public ResponseEntity<List<ExamDTO>> getAllExams(){
@@ -56,13 +61,17 @@ public class ExamController {
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
 	public ResponseEntity<ExamDTO> saveExam(@RequestBody  ExamDTO examDTO){
 		
-		if(examDTO.getStudent() == null || examDTO.getCourseAttending() == null){
+		if(examDTO.getStudent() == null 
+				|| examDTO.getSubject() == null 
+				|| examDTO.getTeacher() == null){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
 		Student student = studentService.findOne(examDTO.getStudent().getId());
-		CourseAttending courseAttending = courseAttendingService.findOne(examDTO.getCourseAttending().getId());
-
-		if (student == null || courseAttending == null){
+		Subject subject = subjectService.findOne(examDTO.getSubject().getId());
+		Teacher teacher = teacherService.findOne(examDTO.getTeacher().getId());
+		
+		if (student == null || teacher == null || subject == null){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -71,7 +80,8 @@ public class ExamController {
 		exam.setScore(examDTO.getScore());
 		exam.setPoints(examDTO.getPoints());
 		exam.setStudent(student);
-		exam.setCourseAttending(courseAttending);
+		exam.setTeacher(teacher);
+		exam.setSubject(subject);
 		
 		exam = examService.save(exam);
 		return new ResponseEntity<>(new ExamDTO(exam), HttpStatus.CREATED);

@@ -24,16 +24,20 @@ public class Teacher extends User {
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseLecture> subjectList = new ArrayList<CourseLecture>();
 
+	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	private List<Exam> examList = new ArrayList<Exam>();
+	
 	public Teacher() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public Teacher(String username, String firstname,
-			String lastname, String birthday, String email, TeacherType teacherType, List<CourseLecture> subjectList) {
+			String lastname, String birthday, String email, TeacherType teacherType, List<CourseLecture> subjectList, List<Exam> examList) {
 		super(username, firstname, lastname, birthday, email);
 		this.teacherType = teacherType;
 		this.subjectList = subjectList;
+		this.examList = examList;
 	}
 
 	public TeacherType getTeacherType() {
@@ -52,5 +56,12 @@ public class Teacher extends User {
 		this.subjectList = subjectList;
 	}
 
-	
+	public List<Exam> getExamList() {
+		return examList;
+	}
+
+	public void setExamList(List<Exam> examList) {
+		this.examList = examList;
+	}
+
 }

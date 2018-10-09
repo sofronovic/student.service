@@ -14,32 +14,22 @@ public class Exam {
 
 	@Id
 	@GeneratedValue
-	private long examId;
+	private long id;
 	
 	@Column
 	private String type;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn
 	private Student student;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "courseAttending_id", referencedColumnName = "courseAttending_id")
-	private CourseAttending courseAttending;
+	@JoinColumn
+	private Teacher teacher;
 	
-	public Exam() {
-		super();
-	}
-	
-	public Exam(long id, String type, Student student, CourseAttending courseAttending, int score, float points) {
-		super();
-		this.examId = id;
-		this.type = type;
-		this.student = student;
-		this.courseAttending = courseAttending;
-		this.score = score;
-		this.points = points;
-	}
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+	@JoinColumn
+	private Subject subject;
 
 	@Column
 	private int score;
@@ -47,12 +37,27 @@ public class Exam {
 	@Column
 	private float points;
 
+	public Exam() {
+		super();
+	}
+	
+	public Exam(long id, String type, int score, float points, Student student, Teacher teacher, Subject subject) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.student = student;
+		this.teacher = teacher;
+		this.subject = subject;
+		this.score = score;
+		this.points = points;
+	}
+	
 	public long getId() {
-		return examId;
+		return id;
 	}
 
 	public void setId(long id) {
-		this.examId = id;
+		this.id = id;
 	}
 
 	public String getType() {
@@ -71,14 +76,6 @@ public class Exam {
 		this.student = student;
 	}
 
-	public CourseAttending getCourseAttending() {
-		return courseAttending;
-	}
-
-	public void setCourseAttending(CourseAttending courseAttending) {
-		this.courseAttending = courseAttending;
-	}
-
 	public int getScore() {
 		return score;
 	}
@@ -93,6 +90,22 @@ public class Exam {
 
 	public void setPoints(float points) {
 		this.points = points;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	
 	
