@@ -18,12 +18,8 @@ public class CourseAttending {
 	private long courseAttendingId;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn
 	private Student student;
-	
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "studyProgram_id", referencedColumnName = "studyProgram_id")
-	private StudyProgram studyProgram;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
@@ -34,11 +30,10 @@ public class CourseAttending {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CourseAttending(long id, Student student, StudyProgram studyProgram, Subject subject) {
+	public CourseAttending(long id, Student student, Subject subject) {
 		super();
 		this.courseAttendingId = id;
 		this.student = student;
-		this.studyProgram = studyProgram;
 		this.subject = subject;
 	}
 
@@ -56,14 +51,6 @@ public class CourseAttending {
 
 	public void setStudent(Student student) {
 		this.student = student;
-	}
-
-	public StudyProgram getStudyProgram() {
-		return studyProgram;
-	}
-
-	public void setStudyProgram(StudyProgram studyProgram) {
-		this.studyProgram = studyProgram;
 	}
 
 	public Subject getSubject() {

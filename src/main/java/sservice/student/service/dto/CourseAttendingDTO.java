@@ -6,7 +6,7 @@ public class CourseAttendingDTO {
 
 	private long id;
 	private StudentDTO student;
-	private StudyProgramDTO studyProgram;
+	private SubjectDTO subject;
 	
 	public CourseAttendingDTO(){}
 	
@@ -14,14 +14,14 @@ public class CourseAttendingDTO {
 		
 		id = courseAttending.getId();
 		student = new StudentDTO(courseAttending.getStudent());
-		studyProgram = new StudyProgramDTO(courseAttending.getStudyProgram());
+		subject = new SubjectDTO(courseAttending.getSubject());
 	}
 
-	public CourseAttendingDTO(long id, StudentDTO student, StudyProgramDTO studyProgram) {
+	public CourseAttendingDTO(long id, StudentDTO student, SubjectDTO subject) {
 		super();
 		this.id = id;
 		this.student = student;
-		this.studyProgram = studyProgram;
+		this.subject = subject;
 	}
 
 	public long getId() {
@@ -40,14 +40,14 @@ public class CourseAttendingDTO {
 		this.student = student;
 	}
 
-	public StudyProgramDTO getStudyProgram() {
-		return studyProgram;
+	public SubjectDTO getSubject() {
+		return subject;
 	}
 
-	public void setStudyProgram(StudyProgramDTO studyProgram) {
-		this.studyProgram = studyProgram;
+	public void setSubject(SubjectDTO subject) {
+		this.subject = subject;
 	}
-	
+
 	
 	
 }

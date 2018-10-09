@@ -5,11 +5,11 @@ import sservice.student.service.model.Student;
 public class StudentDTO {
 	
 	private long id;
-	private String index;
-	private String userName;
+	private String indeks;
+	private String username;
 	private String password;
 	private String name;
-	private String lastName;
+	private String lastname;
 	private String birthday;
 	private String email;
 	private StudyProgramDTO studyProgram;
@@ -19,29 +19,22 @@ public class StudentDTO {
 	public StudentDTO(long id, String index, StudyProgramDTO studyProgram) {
 		super();
 		this.id = id;
-		this.index = index;
+		this.indeks = index;
 		this.studyProgram = studyProgram;
 	}
 
 	
 	public StudentDTO(Student student){
 		id = student.getId();
-		index = student.getIndex();
-		userName = student.getUsername();
+		indeks = student.getIndex();
+		username = student.getUsername();
 		name = student.getFirstname();
-		lastName = student.getLastname();
+		lastname = student.getLastname();
 		birthday = student.getBirthday();
 		email = student.getEmail();
 		studyProgram = new StudyProgramDTO(student.getStudyProgram());
 	}
 	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	public String getPassword() {
 		return password;
@@ -59,13 +52,7 @@ public class StudentDTO {
 		this.name = name;
 	}
 
-	public String getLastName() {
-		return lastName;
-	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
 
 	public String getEmail() {
 		return email;
@@ -83,12 +70,30 @@ public class StudentDTO {
 		this.id = id;
 	}
 
-	public String getIndex() {
-		return index;
+
+
+	public String getIndeks() {
+		return indeks;
 	}
 
-	public void setIndex(String index) {
-		this.index = index;
+	public void setIndeks(String indeks) {
+		this.indeks = indeks;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public StudyProgramDTO getStudyProgram() {

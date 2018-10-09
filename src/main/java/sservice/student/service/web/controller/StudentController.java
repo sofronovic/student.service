@@ -48,12 +48,12 @@ public class StudentController {
 	public ResponseEntity<StudentDTO> saveStudent(@RequestBody StudentDTO student){
 		StudyProgram studyProgram = studyProgramService.findOne(student.getStudyProgram().getId());
 		Student s = new Student();
-		s.setUsername(student.getUserName());
+		s.setUsername(student.getUsername());
 		s.setFirstname(student.getName());
-		s.setLastname(student.getLastName());
+		s.setLastname(student.getLastname());
 		s.setBirthday(student.getBirthday());
 		s.setEmail(student.getEmail());
-		s.setIndex(student.getIndex());
+		s.setIndex(student.getIndeks());
 		s.setStudyProgram(studyProgram);
 	
 		s = studentService.save(s);
