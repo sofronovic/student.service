@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
 @DiscriminatorValue("teacher")
@@ -21,9 +23,11 @@ public class Teacher extends User {
 	@JoinColumn(name = "teacherType_id", referencedColumnName = "teacherType_id")
 	private TeacherType teacherType;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<CourseLecture> subjectList = new ArrayList<CourseLecture>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<Exam> examList = new ArrayList<Exam>();
 	

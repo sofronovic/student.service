@@ -36,7 +36,7 @@ public class ExamController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/all", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<ExamDTO>> getAllExams(){
 		
 		List<Exam> exams = examService.findAll();
