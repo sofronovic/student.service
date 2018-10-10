@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class TeacherType {
 
@@ -22,6 +24,7 @@ public class TeacherType {
 	@Column
 	private String name;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "teacherType", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 	private List<Teacher> teacherList = new ArrayList<Teacher>();
 	

@@ -14,13 +14,13 @@ public class Document {
 
 	@Id
 	@GeneratedValue
-	private long documentId;
+	private long id;
 	
 	@Column
 	private String name;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn
 	private Student student;
 
 	public Document() {
@@ -29,17 +29,17 @@ public class Document {
 	
 	public Document(long id, String name, Student student) {
 		super();
-		this.documentId = id;
+		this.id = id;
 		this.name = name;
 		this.student = student;
 	}
 
 	public long getId() {
-		return documentId;
+		return id;
 	}
 
 	public void setId(long id) {
-		this.documentId = id;
+		this.id = id;
 	}
 
 	public String getName() {
