@@ -72,6 +72,11 @@ public class TeacherController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		Teacher teacher = new Teacher();
+		teacher.setUsername(teacherDTO.getUsername());
+		teacher.setFirstname(teacherDTO.getName());
+		teacher.setLastname(teacherDTO.getLastname());
+		teacher.setBirthday(teacherDTO.getBirthday());
+		teacher.setEmail(teacherDTO.getEmail());
 		teacher.setTeacherType(teacherType);
 		
 		teacher = teacherService.save(teacher);

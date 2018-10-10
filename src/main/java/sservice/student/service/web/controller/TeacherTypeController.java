@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import sservice.student.service.dto.TeacherTypeDTO;
 import sservice.student.service.model.*;
 import sservice.student.service.service.TeacherTypeService;
 
@@ -51,11 +52,13 @@ public class TeacherTypeController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<TeacherType> saveTeacherType(@RequestBody TeacherType teacherType){
+	public ResponseEntity<TeacherTypeDTO> saveTeacherType(@RequestBody TeacherTypeDTO teacherTypeDTO){
 		TeacherType t = new TeacherType();
+		t.setName(teacherTypeDTO.getName());
 		t = teacherTypeService.save(t);
+		System.out.println("TEACHER TYPE" + t.getName());
 		
-		return new ResponseEntity<>(teacherType, HttpStatus.CREATED);
+		return new ResponseEntity<>(new TeacherTypeDTO(t), HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, consumes="application/json")
