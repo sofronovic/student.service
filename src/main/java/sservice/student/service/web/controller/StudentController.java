@@ -49,11 +49,11 @@ public class StudentController {
 		StudyProgram studyProgram = studyProgramService.findOne(student.getStudyProgram().getId());
 		Student s = new Student();
 		s.setUsername(student.getUsername());
-		s.setFirstname(student.getName());
+		s.setFirstname(student.getFirstame());
 		s.setLastname(student.getLastname());
 		s.setBirthday(student.getBirthday());
 		s.setEmail(student.getEmail());
-		s.setIndex(student.getIndeks());
+		s.setIndeks(student.getIndeks());
 		s.setStudyProgram(studyProgram);
 	
 		s = studentService.save(s);

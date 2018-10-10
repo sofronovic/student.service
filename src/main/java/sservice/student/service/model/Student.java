@@ -59,12 +59,12 @@ public class Student extends User {
 		this.courseList = courseList;
 	}
 
-	public String getIndex() {
+	public String getIndeks() {
 		return indeks;
 	}
 
-	public void setIndex(String index) {
-		this.indeks = index;
+	public void setIndeks(String indeks) {
+		this.indeks = indeks;
 	}
 
 	public StudyProgram getStudyProgram() {

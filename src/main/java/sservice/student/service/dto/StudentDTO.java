@@ -8,7 +8,7 @@ public class StudentDTO {
 	private String indeks;
 	private String username;
 	private String password;
-	private String name;
+	private String firstname;
 	private String lastname;
 	private String birthday;
 	private String email;
@@ -26,9 +26,9 @@ public class StudentDTO {
 	
 	public StudentDTO(Student student){
 		id = student.getId();
-		indeks = student.getIndex();
+		indeks = student.getIndeks();
 		username = student.getUsername();
-		name = student.getFirstname();
+		firstname = student.getFirstname();
 		lastname = student.getLastname();
 		birthday = student.getBirthday();
 		email = student.getEmail();
@@ -44,12 +44,12 @@ public class StudentDTO {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstame() {
+		return firstname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 
