@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sservice.student.service.dto.CourseLectureDTO;
 import sservice.student.service.model.*;
 import sservice.student.service.service.CourseLectureService;
+import sservice.student.service.service.SubjectService;
 import sservice.student.service.service.TeacherService;
 
 @RestController
@@ -29,7 +30,10 @@ public class CourseLectureController {
 	@Autowired
 	private TeacherService teacherService;
 	
-	@RequestMapping(value="/all", method = RequestMethod.GET)
+	@Autowired
+	private SubjectService subjectService;
+	
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<CourseLectureDTO>> getAllCourseLectures(){
 		List<CourseLecture> courseLectures = courseLectureService.findAll();
 		List<CourseLectureDTO> courseLectureDTOs = new ArrayList<>();
@@ -39,15 +43,7 @@ public class CourseLectureController {
 		return new ResponseEntity<>(courseLectureDTOs, HttpStatus.OK);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<CourseLecture>> getCourseLecturePage(Pageable page){
-		Page<CourseLecture> pageCourseLecture = courseLectureService.findAll(page);
-		List<CourseLecture> courseLectures = new ArrayList<>();
-		for (CourseLecture p : pageCourseLecture) {
-			courseLectures.add(p);
-		}
-		return new ResponseEntity<>(courseLectures, HttpStatus.OK);
-	}
+	
 	
 	@RequestMapping(value="/{id}", method = RequestMethod.GET)
 	public ResponseEntity<CourseLectureDTO> getCourseLecture(@PathVariable Long id){
@@ -64,12 +60,25 @@ public class CourseLectureController {
 		if(courseLectureDTOO.getTeacher() == null){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
+		if(courseLectureDTOO.getSubject() == null)
+		{
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		Teacher teacher = teacherService.findOne(courseLectureDTOO.getTeacher().getId());
 		if(teacher == null){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
+		
+		Subject subject = subjectService.findOne(courseLectureDTOO.getSubject().getId());
+		if(subject == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		};
+		
 		CourseLecture courseLecture = new CourseLecture();
 		courseLecture.setTeacher(teacher);
+		courseLecture.setSubject(subject);
 		
 		courseLecture = courseLectureService.save(courseLecture);
 		return new ResponseEntity<>(new CourseLectureDTO(courseLecture), HttpStatus.CREATED);

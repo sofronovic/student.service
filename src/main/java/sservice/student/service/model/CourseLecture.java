@@ -18,7 +18,7 @@ public class CourseLecture {
 	private long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "id", referencedColumnName = "id")
+	@JoinColumn
 	private Teacher teacher;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
